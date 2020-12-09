@@ -1,0 +1,42 @@
+body{
+    background-color: palevioletred;
+}
+
+.container{
+    display: inline-block;
+    width: 400px;
+    margin-left: 400px;
+}
+
+.textAlign{
+    text-align: center;
+}
+
+.box{
+    display: inline-block;
+    height: 200px;
+    width: 400px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+
+.reset-btn{
+    margin-top:10px;
+    margin-left: 175px;
+}
+
+.form_inputs{
+    margin-left: 110px;
+}
+
+.submit-btn{
+    margin-left:150px;
+}
+
+.wrong{
+    background-color: red;
+}
+
+.correct{
+    background-color: green;
+}

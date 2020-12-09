@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="textAlign">Welcome to the Great Number Game!</h1>
+        
+        {% if 'guess_counter' in request.session %}
+            <h3 class="textAlign">You have guessed {{request.session.guess_counter}} times</h3>
+        {%endif%}
+        <h2 class="textAlign">Guess a number between 1 through 100</h2>
+        {% if request.session.answer_class == 'correct' %}
+            <h1>Enter your name to enter leaderboards!!!</h1>
+            <form action="/user/create" method="POST"> 
+                {% csrf_token %}
+                <input type="text" name="name" class="form_inputs">
+                <input type="hidden" name="score" value={{request.session.guess_counter}}>
+                <br>
+                <input type="submit" value="Join the Leaderboards!" class="submit-btn">
+            </form>
+        {% else %}
+            <form action="/guess" method="POST"> 
+                {% csrf_token %}
+                <input type="number" name="guess" class="form_inputs">
+                <br>
+                <input type="submit" value="Take a Guess!" class="submit-btn">
+            </form>
+        {% endif %}
+        {% if 'answer' in request.session %}
+            <div class="box {{ request.session.answer_class }} textAlign">
+                <h1>{{request.session.answer}}</h1>
+            </div>
+        {% endif %}
+
+        <a href="/clear"><button class="reset-btn">Reset</button></a>
+    </div>
+</body>
+</html>
